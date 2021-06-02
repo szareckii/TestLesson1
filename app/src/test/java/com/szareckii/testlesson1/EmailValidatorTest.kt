@@ -40,4 +40,35 @@ class EmailValidatorTest {
     fun emailValidator_NullEmail_ReturnsFalse() {
         assertFalse(EmailValidator.isValidEmail(null))
     }
+
+    @Test
+    fun emailValidator_InvalidEmailNoDomainWithDot_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("name@.com"))
+    }
+
+    @Test
+    fun emailValidator_InvalidEmailNoDomainWithoutDot_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("name@com"))
+    }
+
+    @Test
+    fun emailValidator_InvalidEmailOnlyName_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("name"))
+    }
+
+    @Test
+    fun emailValidator_InvalidEmailNameWithoutSobaka_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("name email.com"))
+    }
+
+    @Test
+    fun emailValidator_InvalidEmailNameWithDomainWithSpace_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("name email"))
+    }
+
+    @Test
+    fun emailValidator_InvalidEmailNameWithDomainWithSpaces_ReturnsFalse() {
+        assertFalse(EmailValidator.isValidEmail("name email com"))
+    }
+
 }
